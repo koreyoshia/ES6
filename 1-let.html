@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+    </ul>
+    <script>
+        // var a = 123;
+        // var a = "ab";
+        // console.log(a);
+        //输出ab，js中可以重复定义变量，后者将覆盖前者
+
+
+        // console.log(a);
+        // var a = 10;
+        //输出undefined,相当于
+        // var a
+        // console.log(a);
+        // a = 10;
+        //这属于变量提升，函数中也存在类似的现象
+
+
+        // console.log(a);//undefind——实质输出：a这个函数，变量提升
+        // var a = 10;
+        // console.log(a);//10——实质输出：10
+        // function a(){
+        //   console.log("abc");
+        // }
+        // a="123";
+        // a();//abc——实质输出：最好不要让变量名与函数名一致，否则容易出错
+
+
+        // function a(){
+        //   var b = 1;
+        // }
+        // console.log(b);
+
+
+        // for(var i =0;i<5;i++){
+        //
+        // }
+        // console.log(i);
+        //输出5
+
+
+        //闭包结构
+        // var aLi = document.querySelectorAll("ul li");
+        // for(var i=0;i<aLi.length;i++){
+        //   (function(key){
+        //     aLi[i].onclick =function(){
+        //       console.log(key);
+        //     }
+        //   })(i)
+        // }
+        //闭包就是能够读取其他函数内部变量的函数
+        //可以把闭包简单理解成"定义在一个函数内部的函数"
+        //闭包可以用在许多地方。它的最大用处有两个，
+        // 一个是前面提到的可以读取函数内部的变量，
+        // 另一个就是让这些变量的值始终保持在内存中。
+
+
+        //立即执行函数
+        // var abc = function(){
+        //   console.log(2);
+        // }
+        // abc();
+        //相当于：
+        // (function(){
+        //   console.log(2);
+        // })()
+        //也可以全括起来
+
+        // function a(){
+        //   b = 10;//没有 var 相当于全局变量——函数一旦被执行，此变量将被声明为全局变量
+        //有var是局部变量
+        // }
+        // a();
+        // console.log(b);
+
+
+        // function a(){
+        //   var str = "abc"
+        //   function b(){
+        //     console.log(str);
+        //   }
+        //   b();
+        // }
+        // a();
+        //b这个函数可以访问a函数中的局部变量
+
+
+        //     function f1(){
+        // 　　　　var n=999;
+        // 　　　　function f2(){
+        // 　　　　　　alert(n);
+        // 　　　　}
+        // 　　　　return f2;
+        // 　　}
+        // 　　var result=f1();
+        // 　　result();
+        //      显示999
+
+
+        //   function f1(){
+        // 　　　　var n=999;
+        // 　　　　nAdd=function(){n+=1}
+        // 　　　　function f2(){
+        // 　　　　　　alert(n);
+        // 　　　　}
+        // 　　　　return f2;
+        // 　　}
+        // 　　var result=f1();
+        // 　　result();
+        // 　　nAdd();
+        // 　　result();
+        //     第一次显示999，第二次1000
+
+
+        // let a =10;
+        // let a ="1";
+        // console.log(a);
+        //不可重复定义
+
+
+        // console.log(a);
+        // let a = 10;
+        //不存在变量提升
+
+
+        // function a(){
+        //   console.log(a);
+        //输出一个函数
+        //   let a = 10;
+        // }
+        // console.log(a);
+        // a = 10;
+        // a();
+        //变量与函数不要重名
+
+
+        // let aLi = document.querySelectorAll("ul li");
+        // for(let i=0;i<aLi.length;i++){
+        //     aLi[i].onclick =function(){
+        //       console.log(i);
+        //     }
+        // }
+        //let就不需要闭包了
+
+
+        // if(true){
+        //   let a= 10;
+        // }
+        // console.log(a);
+        //输出结果显示a未被定义
+        //块级作用域问题，只作用于if这个块
+
+
+        // const a = "123";
+        // a ="abc";
+        // console.log(a);
+        //不能更改定定义，即不能指向新的内存地址
+
+
+        // const obj = {
+        //     name:"xiaoming"
+        // }
+        // obj.name = "xiaohong";
+        // console.log(obj);
+        //此时成功被修改为"xiaohong";
+
+        // const obj = {
+        //   name:"xiaoming"
+        // }
+        // obj.name = "xiaohong";
+        // obj = {
+        //   age:"19"
+        // }
+        // console.log(obj);
+        //此时报错不能修改
+        //const不能修改的是内存地址，而不是属性值本身
+        //这里相当于之前对const进行定义，之后又让其指向
+        // {
+        // age:"19"
+        // }
+        //这个对象地址
+
+
+        // const obj = {
+        //   name:"xiaoming"
+        // }
+        // Object.freeze(obj);
+        //对变量进行冻结，不会报错，但也不能修改
+        //Object.freeze()阻止修改现有属性的特性和值，并阻止添加新属性
+        // obj.name = "xiaohong";
+        //注：这里的不能修改主要是由于Object.freeze(obj);
+        //      const只是不能修改地址，Object.freeze(obj)之后都不能改了
+        // console.log(obj);
+
+        let a = "10";
+        console.log(window.a);
+        //    输出undefined
+        //let定义的不在window下
+        setTimeout(function () {
+            console.log(this.a);
+        //    输出undefined
+        },1000)
+
+    </script>
+</body>
+</html>

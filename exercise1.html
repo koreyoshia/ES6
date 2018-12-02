@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var str1 = "hello world";
+        var str2 = "hello";
+        String.prototype.sw = function(str2) {
+            //String是字符串祖级，prototype是原型，
+            // 等于值是属性，等于函数是方法
+            if(this.indexOf(str2) == 0){
+                return true;
+            }
+            return false;
+        }
+        console.log(str1.sw(str2));
+
+        String.prototype.ew = function(str2){
+            if(this.indexOf(str2) == this.length - str2.length){
+                return true;
+            }
+            return false;
+        }
+        console.log(str1.ew(str2));
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // var aa = "123";
+        // function foo(name,age) {
+        //     console.log(this.aa);
+        //     console.log(name);
+        //     console.log(age);
+        // }
+        // foo("lisi","20");
+
+        // var obj = {
+        //     aa:"abcd"
+        // }
+        // foo.call(obj,"zhangsan","30","heida");
+        //多个参数
+        // foo.apply(obj.["zhangsan","30","linda"]);
+    //    两个参数，第二存参数数组
+
+        // var foo2 = foo.bind(obj);
+        // foo2("lisi","18");
+    //    前两者直接执行，后者先绑定对象，调用才执行
+
+        // var foo2 = foo.bind(obj,"lisi");
+        // foo2("18","ligong");
+    //    依次传剩余参数
+
+
+    //    用call和apply实现bind方法
+
+    //     function foo() {
+    //         console.log(Array.from(arguments));
+    //     }
+    //     var obj = {
+    //         name:"zhangsan"
+    //     }
+    //     foo(obj,"20","heida")
+
+
+        Function.prototype.bind2 = function () {
+            let obj = Array.from(arguments)[0];
+            let args = Array.from(arguments).slice(1);
+            let  _this = this;
+            return function () {
+                let bindArgs = Array.from(arguments);
+                // _this.call(obj);
+                let allArgs = args.concat(bindArgs);
+                _this.apply(obj,...allArgs);
+            //    _this.call(obj.bindArgs);
+            }
+        }
+        function foo(name,age) {
+            console.log(this.school);
+            console.log(name);
+            console.log(age);
+        }
+        let obj = {
+            school:"linda"
+        }
+        let foo2 = foo.bind(obj);
+        console.log(foo2);
+        foo2("lisi","20");
+
+
+    </script>
+</body>
+</html>

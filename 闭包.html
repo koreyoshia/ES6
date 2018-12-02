@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul id="uli">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+
+    <script>
+        var oUl = document.getElementById("uli");
+        var aLi = document.getElementsByTagName("li");
+        for(var i = 0;i < aLi.length;i++){
+            aLi[i].onclick = function () {
+                alert(i);
+            }
+        }
+    </script>
+
+</body>
+</html>
